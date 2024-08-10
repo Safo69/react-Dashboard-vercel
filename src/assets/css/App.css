@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css?family=Inter&display=swap");
+
+.App {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+}
+
+.AppHeader {
+    height: 50px;
+    display: flex;
+    justify-content: start; 
+    align-items: center;
+    padding: 4px 20px 4px 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.title {
+    margin-left: 600px; 
+}
+.icons{
+    margin-left: 450px;
+}
+.Appfooter{
+    height: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+}
+.SideMenuandPageContent{
+    display: flex;
+    flex: 1;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+.sideMenu {
+    height: 100%;
+    
+}
+
+.SideMenuvertical {
+    height: 39rem;
+}
+
+.PageContent{
+    padding-left: 12px;
+}
