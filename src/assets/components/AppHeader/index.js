@@ -1,14 +1,16 @@
-import { Badge, Drawer, Image, List, Space, Typography } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Badge, Drawer, Image, List, Space, Typography, Row, Col } from 'antd';
 import { MailOutlined, BellFilled } from '@ant-design/icons';
-import { useEffect, useState } from 'react';
 import { getComment, getOrders } from '../../../API';
 
 function AppHeader() {
+    // State variables for comments and orders
     const [comments, setComments] = useState([]);
     const [orders, setOrders] = useState([]);
     const [commentsOpen, setCommentsOpen] = useState(false);
     const [notificationOpen, setNotificationOpen] = useState(false);
 
+    // Fetching comments and orders from API
     useEffect(() => {
         getComment().then(res => {
             setComments(res.comments);
@@ -19,27 +21,35 @@ function AppHeader() {
     }, []);
 
     return (
-        <div className="AppHeader">
-            <Image
-                width={40}
-                src="/hi.png"
-                alt="Logo"
-            />
-            <Typography.Title level={4} className="title">Safo Dashboard</Typography.Title>
-            <Space className='icons'>
-                <Badge count={comments.length} dot>
-                    <MailOutlined 
-                        style={{ fontSize: 24 }} 
-                        onClick={() => setCommentsOpen(true)} 
+        <div className="AppHeader" style={{ padding: '10px' }}>
+            <Row align="middle" justify="space-between" gutter={[16, 16]}>
+                <Col xs={12} sm={8} md={5}>
+                    <Image
+                        width={40}
+                        src="/hi.png"
+                        alt="Logo"
                     />
-                </Badge>
-                <Badge count={orders.length}>
-                    <BellFilled 
-                        style={{ fontSize: 24 }} 
-                        onClick={() => setNotificationOpen(true)} 
-                    />
-                </Badge>
-            </Space>
+                </Col>
+                <Col xs={12} sm={8} md={12} style={{ textAlign: 'center', display: 'flex', justifyContent: 'center' }}>
+                    <Typography.Title level={6} style={{ whiteSpace: 'nowrap',marginLeft:'13px' ,marginBottom:'2rem'}}>SafoDashboard</Typography.Title>
+                </Col>
+                <Col xs={24} sm={8} md={6} style={{ textAlign: 'right', display: 'flex', justifyContent: 'flex-end' }}>
+                    <Space className='icons'>
+                        <Badge count={comments.length} dot>
+                            <MailOutlined 
+                                style={{ fontSize: 24 }} 
+                                onClick={() => setCommentsOpen(true)} 
+                            />
+                        </Badge>
+                        <Badge count={orders.length}>
+                            <BellFilled 
+                                style={{ fontSize: 24 }} 
+                                onClick={() => setNotificationOpen(true)} 
+                            />
+                        </Badge>
+                    </Space>
+                </Col>
+            </Row>
             <Drawer 
                 title="Comments" 
                 open={commentsOpen} 
@@ -49,7 +59,7 @@ function AppHeader() {
                 <List 
                     dataSource={comments} 
                     renderItem={item => (
-                    <List.Item>{item.body}</List.Item>
+                        <List.Item>{item.body}</List.Item>
                     )}
                 />
             </Drawer>
@@ -59,12 +69,13 @@ function AppHeader() {
                 onClose={() => setNotificationOpen(false)} 
                 maskClosable
             >
-               <List 
+                <List 
                     dataSource={orders} 
                     renderItem={item => (
-                    <List.Item>
-                        <Typography.Text strong>{item.title}</Typography.Text> 
-                        has been ordered!</List.Item>
+                        <List.Item>
+                            <Typography.Text strong>{item.title}</Typography.Text> 
+                            has been ordered!
+                        </List.Item>
                     )}
                 />
             </Drawer>

@@ -1,7 +1,8 @@
 import { DollarCircleOutlined, ShoppingCartOutlined, ShoppingOutlined, UserOutlined } from "@ant-design/icons";
-import { Card, Space, Statistic, Table, Typography } from "antd";
+import { Card, Row, Col, Space, Statistic, Table, Typography } from "antd";
 import { useEffect, useState } from "react";
 import { getCustomers, getInventory, getOrders, getRevenue } from "../../API";
+import { Bar } from "react-chartjs-2";
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -11,7 +12,6 @@ import {
     Tooltip,
     Legend
 } from "chart.js";
-import { Bar } from "react-chartjs-2";
 
 ChartJS.register(
     CategoryScale,
@@ -46,75 +46,73 @@ function Dashboard() {
     return (
         <div>
             <Typography.Title level={4}>Dashboard</Typography.Title>
-            <Space size={20} direction="horizontal">
-                <DashboardCard
-                    icon={
-                        <ShoppingCartOutlined
-                            style={{
-                                color: "green",
-                                backgroundColor: "rgba(0, 255, 0, 0.25)",
-                                borderRadius: 20,
-                                fontSize: 24,
-                                padding: 8,
-                            }}
-                        />
-                    }
-                    title={"Orders"}
-                    value={orders}
-                />
-                <DashboardCard
-                    icon={
-                        <ShoppingOutlined
-                            style={{
-                                color: "blue",
-                                backgroundColor: "rgba(0, 0, 255, 0.25)",
-                                borderRadius: 20,
-                                fontSize: 24,
-                                padding: 8,
-                            }}
-                        />
-                    }
-                    title={"Inventory"}
-                    value={inventory}
-                />
-                <DashboardCard
-                    icon={
-                        <UserOutlined
-                            style={{
-                                color: "purple",
-                                backgroundColor: "rgba(0, 255, 255, 0.25)",
-                                borderRadius: 20,
-                                fontSize: 24,
-                                padding: 8,
-                            }}
-                        />
-                    }
-                    title={"Customers"}
-                    value={customers}
-                />
-                <DashboardCard
-                    icon={
-                        <DollarCircleOutlined
-                            style={{
-                                color: "red",
-                                backgroundColor: "rgba(255, 0, 0, 0.25)",
-                                borderRadius: 20,
-                                fontSize: 24,
-                                padding: 8,
-                            }}
-                        />
-                    }
-                    title={"Revenue"}
-                    value={revenue}
-                />
-            </Space>
-            <br /><br />
-            <Space>
-                <RecentOrders />
-                <DashboardChart />
-            </Space>
+            <Row gutter={[16, 16]}>
+                <Col xs={24} sm={12} md={6}>
+                    <DashboardCard
+                        icon={
+                            <ShoppingCartOutlined
+                                style={iconStyle("green", "rgba(0, 255, 0, 0.25)")}
+                            />
+                        }
+                        title={"Orders"}
+                        value={orders}
+                    />
+                </Col>
+                <Col xs={24} sm={12} md={6}>
+                    <DashboardCard
+                        icon={
+                            <ShoppingOutlined
+                                style={iconStyle("blue", "rgba(0, 0, 255, 0.25)")}
+                            />
+                        }
+                        title={"Inventory"}
+                        value={inventory}
+                    />
+                </Col>
+                <Col xs={24} sm={12} md={6}>
+                    <DashboardCard
+                        icon={
+                            <UserOutlined
+                                style={iconStyle("purple", "rgba(0, 255, 255, 0.25)")}
+                            />
+                        }
+                        title={"Customers"}
+                        value={customers}
+                    />
+                </Col>
+                <Col xs={24} sm={12} md={6}>
+                    <DashboardCard
+                        icon={
+                            <DollarCircleOutlined
+                                style={iconStyle("red", "rgba(255, 0, 0, 0.25)")}
+                            />
+                        }
+                        title={"Revenue"}
+                        value={revenue}
+                    />
+                </Col>
+            </Row>
+            <br />
+            <Row gutter={[16, 16]}>
+                <Col xs={24} lg={12}>
+                    <RecentOrders />
+                </Col>
+                <Col xs={24} lg={12}>
+                    <DashboardChart />
+                </Col>
+            </Row>
         </div>
     );
+}
+
+function iconStyle(color, bgColor) {
+    return {
+        color,
+        backgroundColor: bgColor,
+        borderRadius: 20,
+        fontSize: 24,
+        padding: 8,
+    };
 }
 
 function DashboardCard({ icon, title, value }) {
@@ -136,9 +134,8 @@ function RecentOrders() {
         setLoading(true);
         getOrders()
             .then((res) => {
-                console.log(res);
                 if (res && res.products) {
-                    setDataSource(res.products.slice(0, 5)); // Use slice instead of splice
+                    setDataSource(res.products.slice(0, 5));
                 } else {
                     console.error("API response does not contain products:", res);
                     setDataSource([]);
@@ -187,27 +184,22 @@ function DashboardChart() {
     useEffect(() => {
         getRevenue()
             .then((res) => {
-                console.log('API response:', res);
-
                 if (res && res.carts) {
                     const labels = res.carts.map((cart) => `User-${cart.userId}`);
                     const data = res.carts.map((cart) => cart.discountedTotal);
 
-                    const updatedChartData = {
+                    setChartData({
                         labels,
                         datasets: [
                             {
                                 label: "Revenue",
-                                data: data,
+                                data,
                                 backgroundColor: "rgba(255, 0, 0, 1)",
                             },
                         ],
-                    };
-
-                    setChartData(updatedChartData);
+                    });
                 } else {
                     console.error("API response does not contain carts:", res);
-
                     setChartData({
                         labels: [],
                         datasets: [
@@ -222,7 +214,6 @@ function DashboardChart() {
             })
             .catch((error) => {
                 console.error("Error fetching revenue:", error);
-
                 setChartData({
                     labels: [],
                     datasets: [
@@ -250,7 +241,7 @@ function DashboardChart() {
     };
 
     return (
-        <Card style={{ width: 500, height: 350, marginLeft: 40 }}>
+        <Card style={{ width: "30rem", height: 300 }}>
             <Bar options={options} data={chartData} />
         </Card>
     );
