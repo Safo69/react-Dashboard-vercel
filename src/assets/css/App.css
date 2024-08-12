@@ -66,17 +66,21 @@
 
 @media (max-width: 768px) {
     .AppHeader {
-        flex-direction: column;
-        align-items: center;
+        text-align: center;
     }
 
-    .title {
+    .AppHeader .title {
         font-size: 1.2em;
-        margin: 10px 0;
     }
 
-    .icons {
+    .AppHeader .icons {
         justify-content: center;
     }
 }
+ 
 
+@media (max-width: 576px) {
+    .AppHeader {
+        text-align: center;
+    }
+}
