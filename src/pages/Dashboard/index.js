@@ -241,7 +241,7 @@ function DashboardChart() {
     };
 
     return (
-        <Card style={{ width: "30rem", height: 300 }}>
+        <Card style={{ width: "30rem", height: 300, position: 'relative' }}>
             <Bar options={options} data={chartData} />
         </Card>
     );

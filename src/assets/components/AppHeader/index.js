@@ -21,7 +21,7 @@ function AppHeader() {
     }, []);
 
     return (
-        <div className="AppHeader" style={{ padding: '10px' }}>
+        <div className="AppHeader" style={{ padding: '10px', position:'relative' }}>
             <Row align="middle" justify="space-between" gutter={[16, 16]}>
                 <Col xs={12} sm={8} md={5}>
                     <Image
@@ -33,7 +33,7 @@ function AppHeader() {
                 <Col xs={12} sm={8} md={12} style={{ textAlign: 'center', display: 'flex', justifyContent: 'center' }}>
                     <Typography.Title level={6} style={{ whiteSpace: 'nowrap',marginLeft:'13px' ,marginBottom:'2rem'}}>SafoDashboard</Typography.Title>
                 </Col>
-                <Col xs={24} sm={8} md={6} style={{ textAlign: 'right', display: 'flex', justifyContent: 'flex-end' }}>
+                <Col xs={24} sm={8} md={6} style={{ textAlign: 'right', display: 'flex', justifyContent: 'flex-end',paddingRight:'2rem' }}>
                     <Space className='icons'>
                         <Badge count={comments.length} dot>
                             <MailOutlined 

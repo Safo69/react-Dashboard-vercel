@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Inter&display=swap");
 
 .App {
+    position: relative;
     display: flex;
     flex-direction: column;
     width: 100vw;
@@ -8,6 +9,7 @@
 }
 
 .AppHeader {
+    position: relative;
     height: 50px;
     display: flex;
     justify-content: start; 
@@ -18,11 +20,14 @@
 
 .title {
     margin-left: 600px; 
+    position: relative;
 }
 .icons{
     margin-left: 64rem;
+    position: relative;
 }
 .Appfooter{
+    position: relative;
     height: 50px;
     display: flex;
     justify-content: space-evenly;
@@ -30,6 +35,7 @@
     border-top: 1px solid rgba(0, 0, 0, 0.15);
 }
 .SideMenuandPageContent{
+    position: relative;
     display: flex;
     flex: 1;
     justify-content: flex-start;
@@ -38,11 +44,13 @@
     height: 55rem;
 }
 .sideMenu {
+    position: relative;
     height: 100%;
     
 }
 
 .SideMenuvertical {
+    position: relative;
     height: 52rem;
 }
 
