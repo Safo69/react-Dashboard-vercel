@@ -47,60 +47,44 @@ function Dashboard() {
         <div>
             <Typography.Title level={4}>Dashboard</Typography.Title>
             <Row gutter={[16, 16]}>
-                <Col xs={24} sm={12} md={6}>
-                    <DashboardCard
-                        icon={
-                            <ShoppingCartOutlined
-                                style={iconStyle("green", "rgba(0, 255, 0, 0.25)")}
-                            />
-                        }
-                        title={"Orders"}
-                        value={orders}
-                    />
-                </Col>
-                <Col xs={24} sm={12} md={6}>
-                    <DashboardCard
-                        icon={
-                            <ShoppingOutlined
-                                style={iconStyle("blue", "rgba(0, 0, 255, 0.25)")}
-                            />
-                        }
-                        title={"Inventory"}
-                        value={inventory}
-                    />
-                </Col>
-                <Col xs={24} sm={12} md={6}>
-                    <DashboardCard
-                        icon={
-                            <UserOutlined
-                                style={iconStyle("purple", "rgba(0, 255, 255, 0.25)")}
-                            />
-                        }
-                        title={"Customers"}
-                        value={customers}
-                    />
-                </Col>
-                <Col xs={24} sm={12} md={6}>
-                    <DashboardCard
-                        icon={
-                            <DollarCircleOutlined
-                                style={iconStyle("red", "rgba(255, 0, 0, 0.25)")}
-                            />
-                        }
-                        title={"Revenue"}
-                        value={revenue}
-                    />
-                </Col>
-            </Row>
-            <br />
-            <Row gutter={[16, 16]}>
-                <Col xs={24} lg={12}>
-                    <RecentOrders />
-                </Col>
-                <Col xs={24} lg={12}>
-                    <DashboardChart />
-                </Col>
-            </Row>
+    <Col xs={24} sm={12} lg={6}>
+        <DashboardCard
+            icon={<ShoppingCartOutlined style={iconStyle("green", "rgba(0, 255, 0, 0.25)")} />}
+            title={"Orders"}
+            value={orders}
+        />
+    </Col>
+    <Col xs={24} sm={12} lg={6}>
+        <DashboardCard
+            icon={<ShoppingOutlined style={iconStyle("blue", "rgba(0, 0, 255, 0.25)")} />}
+            title={"Inventory"}
+            value={inventory}
+        />
+    </Col>
+    <Col xs={24} sm={12} lg={6}>
+        <DashboardCard
+            icon={<UserOutlined style={iconStyle("purple", "rgba(0, 255, 255, 0.25)")} />}
+            title={"Customers"}
+            value={customers}
+        />
+    </Col>
+    <Col xs={24} sm={12} lg={6}>
+        <DashboardCard
+            icon={<DollarCircleOutlined style={iconStyle("red", "rgba(255, 0, 0, 0.25)")} />}
+            title={"Revenue"}
+            value={revenue}
+        />
+    </Col>
+</Row>
+<Row gutter={[16, 16]}>
+    <Col xs={24} md={24} lg={12}>
+        <RecentOrders />
+    </Col>
+    <Col xs={24} md={24} lg={12}>
+        <DashboardChart />
+    </Col>
+</Row>
+
         </div>
     );
 }
@@ -184,51 +168,26 @@ function DashboardChart() {
     useEffect(() => {
         getRevenue()
             .then((res) => {
-                if (res && res.carts) {
-                    const labels = res.carts.map((cart) => `User-${cart.userId}`);
-                    const data = res.carts.map((cart) => cart.discountedTotal);
+                const labels = res.carts.map((cart) => `User-${cart.userId}`);
+                const data = res.carts.map((cart) => cart.discountedTotal);
 
-                    setChartData({
-                        labels,
-                        datasets: [
-                            {
-                                label: "Revenue",
-                                data,
-                                backgroundColor: "rgba(255, 0, 0, 1)",
-                            },
-                        ],
-                    });
-                } else {
-                    console.error("API response does not contain carts:", res);
-                    setChartData({
-                        labels: [],
-                        datasets: [
-                            {
-                                label: "Revenue",
-                                data: [],
-                                backgroundColor: "rgba(255, 0, 0, 1)",
-                            },
-                        ],
-                    });
-                }
-            })
-            .catch((error) => {
-                console.error("Error fetching revenue:", error);
                 setChartData({
-                    labels: [],
+                    labels,
                     datasets: [
                         {
                             label: "Revenue",
-                            data: [],
-                            backgroundColor: "rgba(255, 99, 132, 0.5)",
+                            data,
+                            backgroundColor: "rgba(255, 0, 0, 1)",
                         },
                     ],
                 });
-            });
+            })
+            .catch((error) => console.error("Error fetching revenue:", error));
     }, []);
 
     const options = {
         responsive: true,
+        maintainAspectRatio: false, // Allow the chart to scale dynamically
         plugins: {
             legend: {
                 position: "bottom",
@@ -241,8 +200,10 @@ function DashboardChart() {
     };
 
     return (
-        <Card style={{ width: "30rem", height: 300, position: 'relative' }}>
-            <Bar options={options} data={chartData} />
+        <Card className="chart-card" >
+            <div className="chart" style={{ position: "relative",height: "100%", minHeight: 200}}>
+                <Bar options={options} data={chartData} />
+            </div>
         </Card>
     );
 }
