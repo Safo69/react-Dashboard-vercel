@@ -31,9 +31,9 @@ function AppHeader() {
                     />
                 </Col>
                 <Col xs={12} sm={8} md={12} style={{ textAlign: 'center', display: 'flex', justifyContent: 'center' }}>
-                    <Typography.Title level={6} style={{ whiteSpace: 'nowrap',marginLeft:'13px' ,marginBottom:'2rem'}}>SafoDashboard</Typography.Title>
+                    <Typography.Title level={6} style={{ whiteSpace: 'nowrap',marginLeft:'313px' ,marginBottom:'2rem'}}>SafoDashboard</Typography.Title>
                 </Col>
-                <Col xs={24} sm={8} md={6} style={{ textAlign: 'right', display: 'flex', justifyContent: 'flex-end',paddingRight:'2rem' }}>
+                <Col xs={24} sm={8} md={6} style={{ textAlign: 'center', display: 'flex', justifyContent: 'flex-start' }}>
                     <Space className='icons'>
                         <Badge count={comments.length} dot>
                             <MailOutlined 
