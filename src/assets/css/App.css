@@ -4,15 +4,26 @@
     width: 100%;
     height: 100vh;
 }
-
 .AppHeader {
-    height: 50px;
-    display: flex;
-    justify-content: flex-start; 
+    background-color: white;
+    padding: 5px ;
     align-items: center;
-    padding: 4px 20px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
 }
+
+
+.dashboard-title {
+    margin: 0;
+}
+.dashboard-title1{
+    margin: -2;
+}
+
+
 
 .SideMenuandPageContent {
     flex: 1;  
@@ -23,33 +34,54 @@
    
 }
 
-.sideMenu {
-    height: 100vh;
-    background-color: white !important; 
+
+/* side menu */
+.app-header {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
+    align-items: center;
+    padding: 0 16px;
+    height: 64px;
+    background-color: rgba(0, 0, 0, 0.249);
+    color: #fff;
+  }
+  
+  .app-title {
+    margin: 0;
+    padding-left: 46px;
+    font-size: 24px;
+    color: #fff;
+  }
+  
+  .menu-toggle-button {
+    border: none;
+    background-color: transparent;
+    color: #fff;
+    font-size: 26px;
+  }
+  
+  /* Side Menu Styles */
+  .side-menu {
+    width: 250px;
+    height: calc(100vh - 64px); /* Full height minus header */
+    position: fixed;
+    top: 64px;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+    overflow: auto;
+  }
+  
+  /* Content Area */
+  .content-area {
+    margin-left: 250px; 
+    padding: 24px;
+    background-color: #f0f2f5;
+    min-height: calc(100vh - 64px);
+  }
+  
+/* sidemenu xalas  */
 
-.mainLayout {
-    display: flex;
-    height: 100vh; 
-}
 
-.contentArea {
-    flex: 1;
-    background-color: #f0f2f5; 
-    padding: 20px;
-}
-
-.icons{
-    margin-left: 27rem;
-}
-
-.PageContent {
-    flex-grow: 1;
-    padding-left: 12px;
-}
 .chart-card{
     margin-top: 1rem;
     height: 95%;
@@ -60,22 +92,56 @@ padding-top: 2rem;
 height: 100%;
 width: 100%;
 }
-
+/* start app footer  */
 .Appfooter {
-    height: 50px;
+    width: 100%; /* Ensure the footer spans the entire width of the viewport */
+    height: 3rem; /* Increase height for a more prominent footer */
+    margin: 0; /* Remove margin to ensure it stretches to the edges of the page */
+    padding: 0; /* Remove padding to ensure no extra space around the content */
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
     border-top: 1px solid rgba(0, 0, 0, 0.15);
-    padding-bottom: 20px;
-    padding: 20px;
-    
+    background-color: #ffffff; /* Ensure background color consistency */
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for separation */
+    box-sizing: border-box; /* Ensure padding is included in the height */
+    position: fixed; /* Fix the footer at the bottom of the page */
+    bottom: 0; /* Align the footer to the bottom of the viewport */
 }
 
-/* Responsive adjustments */
+.Appfooter a {
+    margin: 0 20px; /* Spacing between links */
+    text-decoration: none;
+    color: #1890ff; /* Ant Design default link color */
+    font-size: 14px; /* Adjust font size if necessary */
+}
+
+.Appfooter a:hover {
+    text-decoration: underline; /* Underline on hover for better user experience */
+}
+
+/* Responsive design */
 @media (max-width: 768px) {
-  
-    .sideMenu {
+    .Appfooter {
+        height: auto; /* Adjust height for flexibility on smaller screens */
+        padding: 10px; /* Add padding for spacing around the links */
+        flex-direction: column; /* Stack links vertically on smaller screens */
+        text-align: center; /* Center-align text on smaller screens */
+    }
+
+    .Appfooter a {
+        margin: 10px 0; /* Adjust vertical spacing for stacked links */
+        font-size: 16px; /* Increase font size for readability on small screens */
+    }
+}
+
+
+/* end footer */
+
+/* Adjustments for Mobile */
+/* General Responsive Adjustments */
+@media (max-width: 768px) {
+    .sideMenu, .side-menu {
         width: 100%; 
         height: 100%;
     }
@@ -83,8 +149,14 @@ width: 100%;
     .PageContent {
         padding: 12px;
     }
+
+    .content-area {
+        margin-left: 0;
+        padding: 16px;
+    }
 }
 
+/* Adjustments for Mobile */
 @media (max-width: 576px) {
     .AppHeader {
         padding: 8px 16px;
@@ -93,4 +165,66 @@ width: 100%;
     .title {
         font-size: 1.1em;
     }
+
+    /* Hide side menu on smaller screens */
+    .side-menu {
+        display: none;
+    }
 }
+
+/* page dashboard */
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+.dashboard-container {
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.007);
+    max-width: 100%; /* Ensure it doesn't exceed viewport width */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+.dashboard-title {
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #333;
+    text-align: center; /* Center title on all devices */
+}
+
+.dashboard-cards, .dashboard-content {
+    display: flex;
+    flex-wrap: wrap; /* Wrap items on smaller screens */
+}
+
+.dashboard-card, .recent-orders-card, .chart-card {
+    background-color: #f0f2f5;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    flex: 1 1 calc(50% - 20px); /* Adjusts card width, accounting for gaps */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+.chart {
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .dashboard-cards, .dashboard-content {
+        flex-direction: column; /* Stack items vertically on small screens */
+    }
+
+    .dashboard-card, .recent-orders-card, .chart-card {
+        flex: 1 1 100%; /* Full width on small screens */
+    }
+}
+
+  /* kotay page dashboard  */
+
+
+
+  

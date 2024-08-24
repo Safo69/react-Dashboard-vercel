@@ -10,56 +10,67 @@ function Customers() {
         setLoading(true);
         getCustomers()
             .then(res => {
-                setDataSource(res.users);
+                setDataSource(res.users); // Ensure dataSource is set correctly
                 setLoading(false);
             })
             .catch(() => setLoading(false));
     }, []);
 
+    const columns = [
+        {
+            title: "Photo",
+            dataIndex: "image",
+            key: "image",
+            render: (image) => <Avatar src={image} size={64} />, // Adjust size
+            responsive: ['md'], // Hide on xs and sm
+        },
+        {
+            title: "First Name",
+            dataIndex: "firstName",
+            key: "firstName",
+        },
+        {
+            title: "Last Name",
+            dataIndex: "lastName",
+            key: "lastName",
+        },
+        {
+            title: "Email",
+            dataIndex: "email",
+            key: "email",
+        },
+        {
+            title: "Phone",
+            dataIndex: "phone",
+            key: "phone",
+        },
+        {
+            title: "Address",
+            dataIndex: "address",
+            key: "address",
+            render: (address) => (
+                <span>{address.address}, {address.city}</span>
+            ),
+        },
+    ];
+
     return (
-        <Space size={20} direction="vertical" style={{ marginTop: 20 }}>
-            <Typography.Title level={4}>Customers</Typography.Title>
-            <Table
-                columns={[
-                    {
-                        title: "Photo",
-                        dataIndex: "image",
-                        render: (image) => <Avatar src={image} />,
-                    },
-                    {
-                        title: "First Name",
-                        dataIndex: "firstName",
-                    },
-                    {
-                        title: "Last Name",
-                        dataIndex: "lastName",
-                    },
-                    {
-                        title: "Email",
-                        dataIndex: "email",
-                    },
-                    {
-                        title: "Phone",
-                        dataIndex: "phone",
-                    },
-                    {
-                        title: "Address",
-                        dataIndex: "address",
-                        render: (address) => {
-                            return (
-                                <span>{address.address}, {address.city}</span>
-                            );
-                        }
-                    },
-                ]}
-                dataSource={dataSource}
-                loading={loading}
-                pagination={{
-                    pageSize: 5, // Shows 5 customers per page
-                }}
-                locale={{ emptyText: 'No data available' }}
-            />
-        </Space>
+        <div style={{ padding: '20px', backgroundColor: '#f0f2f5', minHeight: '100vh' }}>
+            <Space size={20} direction="vertical" style={{ width: '100%' }}>
+                <Typography.Title level={4} className="dashboard-title">Customers</Typography.Title>
+                <Table
+                    columns={columns}
+                    dataSource={dataSource}
+                    loading={loading}
+                    pagination={{
+                        pageSize: 5, // Shows 5 customers per page
+                    }}
+                    scroll={{ x: true }} // Allow horizontal scroll if needed
+                    locale={{ emptyText: 'No data available' }}
+                    style={{ backgroundColor: '#ffffff', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)' }} // Consistent styling
+                />
+            </Space>
+        </div>
     );
 }
 

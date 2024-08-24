@@ -4,46 +4,44 @@ import { MailOutlined, BellFilled } from '@ant-design/icons';
 import { getComment, getOrders } from '../../../API';
 
 function AppHeader() {
-    // State variables for comments and orders
     const [comments, setComments] = useState([]);
     const [orders, setOrders] = useState([]);
     const [commentsOpen, setCommentsOpen] = useState(false);
     const [notificationOpen, setNotificationOpen] = useState(false);
 
-    // Fetching comments and orders from API
     useEffect(() => {
         getComment().then(res => {
+            console.log('Comments:', res.comments); 
             setComments(res.comments);
         });
         getOrders().then(res => {
+            console.log('Orders:', res.products); 
             setOrders(res.products);
         });
     }, []);
 
     return (
-        <div className="AppHeader" style={{ padding: '10px', position:'relative' }}>
-            <Row align="middle" justify="space-between" gutter={[16, 16]}>
-                <Col xs={12} sm={8} md={5}>
-                    <Image
-                        width={40}
-                        src="/hi.png"
-                        alt="Logo"
-                    />
+        <div className="AppHeader">
+            <Row align="middle" justify="space-between">
+                <Col>
+                    <Image width={40} src="/hi.png" alt="Logo" />
                 </Col>
-                <Col xs={12} sm={8} md={12} style={{ textAlign: 'center', display: 'flex', justifyContent: 'center' }}>
-                    <Typography.Title level={6} style={{ whiteSpace: 'nowrap',marginLeft:'313px' ,marginBottom:'2rem'}}>SafoDashboard</Typography.Title>
+                <Col>
+                    <Typography.Title level={4} className="dashboard-title1" style={{ marginTop: '10px' }}>
+                        SafoDashboard
+                    </Typography.Title>
                 </Col>
-                <Col xs={24} sm={8} md={6} style={{ textAlign: 'center', display: 'flex', justifyContent: 'flex-start' }}>
-                    <Space className='icons'>
+                <Col>
+                    <Space size="large" align="center">
                         <Badge count={comments.length} dot>
                             <MailOutlined 
                                 style={{ fontSize: 24 }} 
                                 onClick={() => setCommentsOpen(true)} 
                             />
                         </Badge>
-                        <Badge count={orders.length}>
+                        <Badge count={orders.length} style={{ marginRight: '10rem' }}>
                             <BellFilled 
-                                style={{ fontSize: 24 }} 
+                                style={{ fontSize: 24 ,marginRight:'10rem' }} 
                                 onClick={() => setNotificationOpen(true)} 
                             />
                         </Badge>
@@ -64,7 +62,7 @@ function AppHeader() {
                 />
             </Drawer>
             <Drawer 
-                title="Notification" 
+                title="Notifications" 
                 open={notificationOpen} 
                 onClose={() => setNotificationOpen(false)} 
                 maskClosable
