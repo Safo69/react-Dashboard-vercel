@@ -16,6 +16,7 @@
 }
 
 
+
 .dashboard-title {
     margin: 0;
 }
@@ -37,31 +38,36 @@
 
 /* side menu */
 .app-header {
+    width: 100px;
     display: flex;
     align-items: center;
     padding: 0 16px;
     height: 64px;
-    background-color: rgba(0, 0, 0, 0.249);
+    background-color: rgba(0, 0, 0, 0.03);
     color: #fff;
+   border-radius: 3rem;
   }
   
   .app-title {
     margin: 0;
-    padding-left: 46px;
-    font-size: 24px;
-    color: #fff;
+    padding-left: 14px;
+    margin-top: 9px;
+    font-size: 18px;
+    color: #121111;
   }
   
   .menu-toggle-button {
     border: none;
     background-color: transparent;
-    color: #fff;
-    font-size: 26px;
+    color: #171717;
+    font-size: 30px;
   }
-  
+  .dashboard-card{
+    width: 14rem;
+  }
   /* Side Menu Styles */
   .side-menu {
-    width: 250px;
+    width: 157px;
     height: calc(100vh - 64px); /* Full height minus header */
     position: fixed;
     top: 64px;
@@ -81,9 +87,14 @@
   
 /* sidemenu xalas  */
 
-
+.recent-orders-card{
+    margin-bottom: 1rem;
+    width: 100%;
+    padding-right: 100px;
+    
+}
 .chart-card{
-    margin-top: 1rem;
+    margin-top: -1rem;
     height: 95%;
     margin-bottom: 1rem;
 }
@@ -92,46 +103,45 @@ padding-top: 2rem;
 height: 100%;
 width: 100%;
 }
-/* start app footer  */
-.Appfooter {
-    width: 100%; /* Ensure the footer spans the entire width of the viewport */
-    height: 3rem; /* Increase height for a more prominent footer */
-    margin: 0; /* Remove margin to ensure it stretches to the edges of the page */
-    padding: 0; /* Remove padding to ensure no extra space around the content */
+
+.drawer{
+    width: 253px;
+}
+
+/* start app footer  */.Appfooter {
+    width: 100%;
+    padding: 10px 0;
     display: flex;
-    justify-content: center; /* Center items horizontally */
-    align-items: center; /* Center items vertically */
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    position: fixed;
+    bottom: 0;
+    left: 0;
     border-top: 1px solid rgba(0, 0, 0, 0.15);
-    background-color: #ffffff; /* Ensure background color consistency */
-    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for separation */
-    box-sizing: border-box; /* Ensure padding is included in the height */
-    position: fixed; /* Fix the footer at the bottom of the page */
-    bottom: 0; /* Align the footer to the bottom of the viewport */
 }
 
 .Appfooter a {
-    margin: 0 20px; /* Spacing between links */
+    margin: 0 15px;
+    color: #1890ff;
     text-decoration: none;
-    color: #1890ff; /* Ant Design default link color */
-    font-size: 14px; /* Adjust font size if necessary */
 }
 
 .Appfooter a:hover {
-    text-decoration: underline; /* Underline on hover for better user experience */
+    text-decoration: underline;
 }
 
-/* Responsive design */
+/* Responsive Design */
 @media (max-width: 768px) {
     .Appfooter {
-        height: auto; /* Adjust height for flexibility on smaller screens */
-        padding: 10px; /* Add padding for spacing around the links */
-        flex-direction: column; /* Stack links vertically on smaller screens */
-        text-align: center; /* Center-align text on smaller screens */
+        padding: 15px 0;
+        text-align: center;
+        justify-content: space-evenly;
     }
 
     .Appfooter a {
-        margin: 10px 0; /* Adjust vertical spacing for stacked links */
-        font-size: 16px; /* Increase font size for readability on small screens */
+        margin: 8px 0;
+        font-size: 16px;
     }
 }
 
@@ -185,7 +195,8 @@ width: 100%;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.007);
     max-width: 100%; /* Ensure it doesn't exceed viewport width */
-    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    box-sizing: border-box;
+     /* Include padding and border in element's total width and height */
 }
 
 .dashboard-title {
@@ -206,7 +217,8 @@ width: 100%;
     padding: 16px;
     text-align: center;
     flex: 1 1 calc(50% - 20px); /* Adjusts card width, accounting for gaps */
-    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    box-sizing: border-box;
+    margin-top: 0rem; /* Include padding and border in element's total width and height */
 }
 
 .chart {

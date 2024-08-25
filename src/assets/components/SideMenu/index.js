@@ -13,8 +13,8 @@ function AppMenu() {
   const location = useLocation();
   const navigate = useNavigate();
   const [selectedKeys, setSelectedKeys] = useState('/');
-  const [visible, setVisible] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [open, setOpen] = useState(false); 
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
     const { pathname } = location;
@@ -26,13 +26,10 @@ function AppMenu() {
       setIsMobile(window.innerWidth <= 768);
     };
 
-    // Initial check
     handleResize();
 
-    // Add event listener
     window.addEventListener('resize', handleResize);
 
-    // Clean up event listener on unmount
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
@@ -65,7 +62,7 @@ function AppMenu() {
       onClick={(e) => {
         navigate(e.key);
         if (isMobile) {
-          setVisible(false);
+          setOpen(false); 
         }
       }}
       selectedKeys={[selectedKeys]}
@@ -82,11 +79,11 @@ function AppMenu() {
           <Button
             type="primary"
             icon={<MenuOutlined />}
-            onClick={() => setVisible(true)}
+            onClick={() => setOpen(true)} 
             className="menu-toggle-button"
           />
         )}
-        <h1 className="app-title">The navMenu</h1>
+        <h1 className="app-title">navMenu</h1>
       </div>
 
       {/* Side Menu for Desktop */}
@@ -94,12 +91,11 @@ function AppMenu() {
 
       {/* Drawer for Mobile */}
       {isMobile && (
-        <Drawer
+        <Drawer style={{width:'250px'}}
           title="Menu"
           placement="left"
-          onClose={() => setVisible(false)}
-          visible={visible}
-          
+          onClose={() => setOpen(false)} 
+          open={open} 
         >
           {renderMenu()}
         </Drawer>

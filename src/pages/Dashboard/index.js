@@ -48,34 +48,34 @@ function Dashboard() {
             <Typography.Title level={4} className="dashboard-title">Dashboard</Typography.Title>
             <Row gutter={[16, 16]} className="dashboard-cards">
                 <Col xs={24} sm={12} lg={6}>
-                    <DashboardCard
+                    <DashboardCard className="dashboard-card"
                         icon={<ShoppingCartOutlined style={iconStyle("green", "rgba(0, 255, 0, 0.25)")} />}
                         title={"Orders"}
                         value={orders}
                     /> <br/>
                 </Col>
                 <Col xs={24} sm={12} lg={6}>
-                    <DashboardCard
+                    <DashboardCard className="dashboard-card"
                         icon={<ShoppingOutlined style={iconStyle("blue", "rgba(0, 0, 255, 0.25)")} />}
                         title={"Inventory"}
                         value={inventory}
                     />
                 </Col>
                 <Col xs={24} sm={12} lg={6}>
-                    <DashboardCard
+                    <DashboardCard className="dashboard-card"
                         icon={<UserOutlined style={iconStyle("purple", "rgba(0, 255, 255, 0.25)")} />}
                         title={"Customers"}
                         value={customers}
                     />
                 </Col>
                 <Col xs={24} sm={12} lg={6}>
-                    <DashboardCard
+                    <DashboardCard className="dashboard-card"
                         icon={<DollarCircleOutlined style={iconStyle("red", "rgba(255, 0, 0, 0.25)")} />}
                         title={"Revenue"}
                         value={revenue}
                     />
                 </Col>
-            </Row>
+            </Row> <br/>
             <Row gutter={[16, 16]} className="dashboard-content">
                 <Col xs={24} md={24} lg={12}>
                     <RecentOrders />
@@ -198,8 +198,9 @@ function DashboardChart() {
     };
 
     return (
+        
         <Card title="Order Revenue" className="chart-card">
-            <div className="chart" style={{ position: "relative", height: "100%", minHeight: 200 }}>
+            <div className="chart" style={{ position: "relative", height: "100%", minHeight: 250,  width:'330px'}}>
                 <Bar options={options} data={chartData} />
             </div>
         </Card>
