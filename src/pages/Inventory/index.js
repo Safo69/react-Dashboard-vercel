@@ -20,37 +20,40 @@ function Inventory() {
         {
             title: "Thumbnail",
             dataIndex: "thumbnail",
-            render: (thumbnailUrl) => <Avatar src={thumbnailUrl} size={64} />, // Adjust size
-            responsive: ['sm'], // Hide on xs
+            render: (thumbnailUrl) => <Avatar src={thumbnailUrl} size={48} />, // Adjust size for small devices
+            width: 80,
         },
         {
             title: "Title",
             dataIndex: "title",
+            width: 150,
         },
         {
             title: "Price",
             dataIndex: "price",
             render: (value) => <span>${value}</span>,
+            width: 100,
         },
         {
             title: "Rating",
             dataIndex: "rating",
             render: (rating) => <Rate value={rating} allowHalf disabled />,
+            width: 100,
         },
         {
             title: "Stock",
             dataIndex: "stock",
-            responsive: ['md'], // Hide on xs and sm
+            width: 100,
         },
         {
             title: "Category",
             dataIndex: "category",
-            responsive: ['md'], // Hide on xs and sm
+            width: 120,
         },
         {
             title: "Brand",
             dataIndex: "brand",
-            responsive: ['md'], // Hide on xs and sm
+            width: 120,
         },
     ];
 
@@ -65,7 +68,7 @@ function Inventory() {
                     pagination={{
                         pageSize: 5, // Number of products per page
                     }}
-                    scroll={{ x: true }} // Allow horizontal scroll if needed
+                    scroll={{ x: 'max-content' }} // Allow horizontal scroll to accommodate all columns
                     locale={{ emptyText: 'No data available' }}
                     style={{ backgroundColor: '#ffffff', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)' }} // Consistent styling
                 />
