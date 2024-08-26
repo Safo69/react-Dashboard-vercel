@@ -22,31 +22,40 @@ function AppHeader() {
 
     return (
         <div className="AppHeader">
-            <Row align="middle" justify="space-between">
-                <Col>
-                    <Image width={40} src="/hi.png" alt="Logo" />
-                </Col>
-                <Col>
-                    <Typography.Title level={4} className="dashboard-title1" style={{ marginTop: '10px' }}>
-                        SafoDashboard
-                    </Typography.Title>
-                </Col>
-                <Col>
-                    <Space size="large" align="center">
-                        <Badge count={comments.length} dot>
-                            <MailOutlined 
-                                style={{ fontSize: 24 }} 
-                                onClick={() => setCommentsOpen(true)} 
-                            />
-                        </Badge>
-                        <Badge count={orders.length} style={{ marginRight: '10rem' }}>
-                            <BellFilled 
-                                style={{ fontSize: 24 ,marginRight:'10rem' }} 
-                                onClick={() => setNotificationOpen(true)} 
-                            />
-                        </Badge>
-                    </Space>
-                </Col>
+        <Row align="middle" justify="space-between" gutter={[16, 16]}>
+            <Col xs={8} sm={6} md={4} lg={2}>
+                <Image 
+                    width={30} 
+                    src="/hi.png" 
+                    alt="Logo" 
+                    style={{ marginLeft: '8px' }} 
+                />
+            </Col>
+            <Col xs={8} sm={12} md={16} lg={20} style={{ textAlign: 'center' }}>
+                <Typography.Title 
+                    level={4} 
+                    className="dashboard-title1" 
+                    style={{ marginTop: '10px', marginBottom: 15 }}
+                >
+                    SafoDashboard
+                </Typography.Title>
+            </Col>
+            <Col xs={8} sm={6} md={4} lg={2} style={{ textAlign: 'center' }}>
+                <Space size={['small', 'middle']} align="center">
+                    <Badge count={comments.length} dot>
+                        <MailOutlined 
+                            style={{ fontSize: 24, }} 
+                            onClick={() => setCommentsOpen(true)} 
+                        />
+                    </Badge>
+                    <Badge count={orders.length}>
+                        <BellFilled 
+                            style={{ fontSize: 24, }} 
+                            onClick={() => setNotificationOpen(true)} 
+                        />
+                    </Badge>
+                </Space>
+            </Col>
             </Row>
             <Drawer 
                 title="Comments" 
