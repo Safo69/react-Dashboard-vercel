@@ -61,7 +61,7 @@ function Inventory() {
         <div style={{ padding: '20px', backgroundColor: '#f0f2f5', minHeight: '100vh' }}>
             <Space size={20} direction="vertical" style={{ width: '100%' }}>
                 <Typography.Title level={4} className="dashboard-title">Inventory</Typography.Title>
-                <Table
+                <Table className="table-inventory"
                     columns={columns}
                     dataSource={dataSource}
                     loading={loading}

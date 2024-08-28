@@ -159,8 +159,13 @@ width: 100%;
 
     .PageContent {
         padding: 12px;
-    }
+        margin-left: -33px;
 
+    }
+.table-inventory{
+    padding: 12px;
+    margin-left: -30px;
+}
     .content-area {
         margin-left: 0;
         padding: 16px;
@@ -171,7 +176,7 @@ width: 100%;
 @media (max-width: 576px) {
     .AppHeader {
         padding: 8px 16px;
-        padding-right: 19rem;
+        padding-right: 25rem;
         width: 100%;
         height: 100%;
     }
@@ -200,7 +205,7 @@ width: 100%;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.007);
     max-width: 100%; /* Ensure it doesn't exceed viewport width */
     box-sizing: border-box;
-     /* Include padding and border in element's total width and height */
+        
 }
 
 .dashboard-title {
@@ -212,7 +217,7 @@ width: 100%;
 
 .dashboard-cards, .dashboard-content {
     display: flex;
-    flex-wrap: wrap; /* Wrap items on smaller screens */
+    flex-wrap: wrap;
 }
 
 .dashboard-card, .recent-orders-card, .chart-card {
